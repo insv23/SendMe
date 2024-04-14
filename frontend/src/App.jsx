@@ -2,7 +2,7 @@ import MessagePage from "./components/MessagePage";
 
 const App = () => {
   return (
-    <div>
+    <div className="flex justify-center min-h-screen bg-[#121212]">
       <MessagePage />
     </div>
   );
