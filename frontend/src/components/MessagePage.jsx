@@ -15,7 +15,7 @@ const MessagesPage = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col max-w-md">
       <MessageList messages={messages} />
       <InputBox onMessageSend={addMessage} />
     </div>
