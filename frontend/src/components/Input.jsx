@@ -16,9 +16,20 @@ const Input = () => {
     setFiles(files.filter((file) => file !== fileToRemove));
   };
 
+  const handlePaste = (event) => {
+    const items = event.clipboardData.items;
+    for (const item of items) {
+      if (item.type.startsWith("image/")) {
+        const file = item.getAsFile();
+        setFiles([...files, file]);
+        event.preventDefault();
+      }
+    }
+  };
+
   return (
     <div className="input-container p-4 m-2 bg-[#202020] rounded-md border border-gray-600 hover:border-blue-500 focus-within:border-blue-500">
-      <InputEditor text={text} setText={setText} />
+      <InputEditor text={text} setText={setText} onPaste={handlePaste} />
       <InputFileArea files={files} onRemoveFile={handleRemoveFile} />
       <InputToolbar onFilesSelected={handleFilesSelect} />
     </div>
