@@ -1,6 +1,10 @@
 import { Button } from "primereact/button";
 
-const File = ({ file }) => {
+const File = ({ file, onRemove }) => {
+  const handleRemoveClick = () => {
+    onRemove(file);
+  };
+
   // 检查文件是否为图片
   const isImage = file.type.startsWith("image/");
 
@@ -22,7 +26,7 @@ const File = ({ file }) => {
         <span className="truncate">{file.name}</span>
       </div>
       <div className="flex-none">
-        <Button icon="pi pi-trash " text></Button>
+        <Button icon="pi pi-trash " text onClick={handleRemoveClick}></Button>
       </div>
     </div>
   );
