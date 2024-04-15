@@ -1,7 +1,5 @@
-import './App.css'
-import "quill/dist/quill.bubble.css";
 import MessagePage from "./components/MessagePage";
-
+import "./App.css";
 
 const App = () => {
   return (
