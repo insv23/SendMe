@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import InputBox from './InputBox';
 import MessageList from './MessageList';
 import messageService from '../services/message';
 
