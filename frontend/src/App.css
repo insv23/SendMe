@@ -41,3 +41,8 @@
   color: #888;
 } */
 
+/* Quill Editor placeholer */
+.ql-editor::before {
+  color: #c8c8c8 !important;
+  opacity: 0.7;
+}
