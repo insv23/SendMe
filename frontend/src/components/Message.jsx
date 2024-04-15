@@ -1,5 +1,5 @@
-import FormattedDateTime from './FormattedDateTime';
-import MessageText from './MessageText';
+import FormattedDateTime from "./FormattedDateTime";
+import MessageText from "./MessageText";
 
 const Message = ({ message }) => {
   const fileUrlBase = "http://localhost:9003/api/files/";
