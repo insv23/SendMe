@@ -3,6 +3,7 @@ import { Button } from "primereact/button";
 
 const MessageFileItem = ({ file }) => {
   const fileUrlBase = `${import.meta.env.VITE_API_BASE_URL}/api/files/`;
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   // 检查文件是否为图片
   const isImage = file.file_type.startsWith("image/");
@@ -14,7 +15,7 @@ const MessageFileItem = ({ file }) => {
     }
 
     try {
-      const imageResponse = await fetch(fileUrlBase + file.file_name);
+      const imageResponse = await fetch(`${baseUrl}/api/files/${file.file_name}`);
       const imageBlob = await imageResponse.blob();
       const clipboardItem = new ClipboardItem({ "image/png": imageBlob });
       await navigator.clipboard.write([clipboardItem]);
@@ -28,7 +29,7 @@ const MessageFileItem = ({ file }) => {
   const handleDownloadClick = () => {
     // 创建一个a标签用于触发下载
     const link = document.createElement('a');
-    link.href = fileUrlBase + file.file_name;
+    link.href = `${baseUrl}/api/download/${file.file_name}`;
     link.download = file.file_name; // 设置下载的文件名
     document.body.appendChild(link);
     link.click();
