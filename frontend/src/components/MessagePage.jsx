@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import MessageList from "./MessageList";
 import messageService from "../services/message";
 import Input from "./Input";
+import TopBar from "./TopBar";
 
 const MessagesPage = () => {
   const [messages, setMessages] = useState([]);
@@ -25,6 +26,7 @@ const MessagesPage = () => {
 
   return (
     <div className="flex flex-col max-w-sm sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl text-[#D9D9D9]">
+      <TopBar />
       <Input onMessageSend={addMessage} />
       <MessageList messages={messages} />
     </div>
