@@ -7,11 +7,16 @@ const MessagesPage = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    messageService.getAll().then((messages) => setMessages(messages));
+    messageService.getAll().then((messages) => {
+      // 对获取到的消息按照创建时间降序排序
+      const sortedMessages = messages.sort((a, b) => Date.parse(b.message_creation_time) - Date.parse(a.message_creation_time));
+      setMessages(sortedMessages);
+    });
   }, []);
 
   const addMessage = (newMessage) => {
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
+    // 为了保持消息列表的顺序，新消息应该被添加到数组的开头
+    setMessages((prevMessages) => [newMessage, ...prevMessages]);
   };
 
   return (
