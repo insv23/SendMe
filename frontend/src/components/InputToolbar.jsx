@@ -17,8 +17,19 @@ const InputToolbar = ({ onFilesSelected, onSend }) => {
         ref={fileInputRef}
         onChange={onFilesSelected}
       />
-      <Button label="Upload" icon="pi pi-plus" onClick={handleUploadClick} />
-      <Button label="Send" icon="pi pi-upload" onClick={onSend} />
+      <Button
+        label="Upload"
+        icon="pi pi-plus"
+        text
+        raised
+        onClick={handleUploadClick}
+      />
+      <Button
+        label="Send"
+        icon="pi pi-upload"
+        iconPos="right"
+        onClick={onSend}
+      />
     </div>
   );
 };
