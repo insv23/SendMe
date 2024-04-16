@@ -46,3 +46,32 @@
   color: #c8c8c8 !important;
   opacity: 0.7;
 }
+.ql-editor {
+  background-color: transparent !important; /* 设置编辑器背景为透明 */
+  color: #d9d9d9 !important; /* 设置编辑器内文本颜色 */
+}
+/* 覆盖工具栏的背景和边框样式 */
+.ql-toolbar {
+  background-color: transparent !important; /* 设置背景为透明 */
+  border-radius: 10px !important; /* 设置圆角 */
+  padding: 5px; /* 添加内边距 */
+}
+
+/* 调整工具栏按钮的样式 */
+.ql-toolbar button {
+  color: #d9d9d9 !important; /* 设置按钮的文字颜色 */
+  background-color: #333 !important; /* 设置按钮的背景颜色 */
+  border-radius: 5px !important; /* 设置按钮的圆角 */
+  margin-right: 4px; /* 在按钮之间添加右边距 */
+  padding: 5px 10px; /* 增加按钮的内边距，使其更易点击 */
+}
+
+/* 最后一个按钮的右边距应该去掉，避免工具栏右侧有不必要的空间 */
+.ql-toolbar button:last-child {
+  margin-right: 0;
+}
+
+/* 调整工具栏按钮在悬停时的样式 */
+.ql-toolbar button:hover {
+  background-color: #555 !important; /* 按钮悬停时的背景颜色 */
+}
