@@ -27,7 +27,7 @@ const InputEditor = ({ text, setText, onPaste, onSend }) => {
         key={key} // 使用key强制重新渲染组件
         theme="bubble"
         value={text}
-        placeholder="Input text or paste images here..."
+        placeholder="Input text or paste images here... Press Cmd/Ctrl + Enter to send"
         onTextChange={(e) => setText(e.htmlValue)}
         onPaste={onPaste}
         onKeyDown={handleKeyDown}
