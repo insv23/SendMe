@@ -2,7 +2,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Button } from "primereact/button";
 
 const MessageFileItem = ({ file }) => {
-  const fileUrlBase = "http://localhost:9003/api/files/";
+  const fileUrlBase = `${import.meta.env.VITE_API_BASE_URL}/api/files/`;
 
   // 检查文件是否为图片
   const isImage = file.file_type.startsWith("image/");

@@ -1,9 +1,10 @@
 import { ofetch } from "ofetch";
-const baseUrl = "http://localhost:9003/api/messages";
+
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 const getAll = async () => {
   try {
-    const response = await ofetch(`${baseUrl}`);
+    const response = await ofetch(`${baseUrl}/api/messages`);
     return response.data;
   } catch (error) {
     console.error("Error fetching messages:", error);
@@ -13,7 +14,7 @@ const getAll = async () => {
 
 const create = async (formData) => {
   try {
-    const response = await ofetch(`${baseUrl}`, {
+    const response = await ofetch(`${baseUrl}/api/messages`, {
       method: "POST",
       body: formData,
     });

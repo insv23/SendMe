@@ -3,7 +3,6 @@ import MessageFiles from "./MessageFiles";
 import MessageText from "./MessageText";
 
 const Message = ({ message }) => {
-  const fileUrlBase = "http://localhost:9003/api/files/";
 
   return (
     <div className="p-4 m-2 bg-[#202020] rounded-md">
