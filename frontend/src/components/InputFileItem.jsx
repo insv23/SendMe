@@ -1,6 +1,6 @@
 import { Button } from "primereact/button";
 
-const File = ({ file, onRemove }) => {
+const InputFileItem = ({ file, onRemove }) => {
   const handleRemoveClick = () => {
     onRemove(file);
   };
@@ -32,4 +32,4 @@ const File = ({ file, onRemove }) => {
   );
 };
 
-export default File;
+export default InputFileItem;
