@@ -44,6 +44,15 @@ const MessageFileItem = ({ file }) => {
     toast.success("Download started");
   };
 
+  function formatFileName(fileName) {
+    const parts = fileName.split('-');
+    if (parts.length > 2) {
+      const extension = parts.pop(); // 移除并获取最后一部分（文件扩展名）
+      return `${parts[0]}.${extension.split('.').pop()}`; // 组合第一部分和文件扩展名
+    }
+    return fileName; // 如果格式不匹配，返回原始文件名
+  }
+
   return (
     <div className="flex gap-2 m-1 message-file-item">
       <Toaster position="top-center" reverseOrder={false} />
@@ -60,7 +69,7 @@ const MessageFileItem = ({ file }) => {
         />
       </div>
       <div className="flex items-center flex-auto overflow-hidden">
-        <span className="truncate">{file.file_name}</span>
+        <span className="truncate">{formatFileName(file.file_name)}</span>
       </div>
       <div
         className="flex-none"
