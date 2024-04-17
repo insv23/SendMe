@@ -25,5 +25,5 @@ dist-ssr
 
 .vite
 
-uploads
+/backend/database/dev_uploads/*
 *.sqlite
