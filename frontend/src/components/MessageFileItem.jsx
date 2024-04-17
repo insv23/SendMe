@@ -17,9 +17,14 @@ const MessageFileItem = ({ file }) => {
     try {
       const imageResponse = await fetch(`${baseUrl}/api/files/${file.file_name}`);
       const imageBlob = await imageResponse.blob();
-      const clipboardItem = new ClipboardItem({ "image/png": imageBlob });
-      await navigator.clipboard.write([clipboardItem]);
-      toast.success("Image copied to clipboard");
+      if (window.ClipboardItem) {
+        const clipboardItem = new ClipboardItem({ [imageBlob.type]: imageBlob });
+       await navigator.clipboard.write([clipboardItem]);
+        toast.success("Image copied to clipboard");
+      } else {
+        console.error("ClipboardItem is not supported by this browser.");
+        toast.error("此浏览器不支持复制到剪贴板(可能需要 https)");
+      }
     } catch (err) {
       console.error("复制失败: ", err);
       toast.error("复制到剪贴板失败");
