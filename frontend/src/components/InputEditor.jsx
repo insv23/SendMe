@@ -28,7 +28,7 @@ const InputEditor = ({ text, setText, onPaste, onSend }) => {
         theme="bubble"
         value={text}
         placeholder="Input text or paste images here... Press Cmd/Ctrl + Enter to send"
-        onTextChange={(e) => setText(e.htmlValue)}
+        onTextChange={(e) => setText(e.htmlValue || "")}
         onPaste={onPaste}
         onKeyDown={handleKeyDown}
         style={{ minHeight: "150px" }}
