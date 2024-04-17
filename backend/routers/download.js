@@ -9,7 +9,9 @@ router.get("/:filename", (req, res) => {
 
   res.download(filePath, (err) => {
     if (err) {
-      res.status(404).send("File not found");
+      if (!res.headersSent) {
+        res.status(404).send("File not found");
+      }
     }
   });
 });
