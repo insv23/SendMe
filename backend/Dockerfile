@@ -1,7 +1,8 @@
 FROM node:14
 WORKDIR /app
 COPY package.json package-lock.json ./
+RUN npm install
+RUN apt-get update && apt-get install -y sqlite3
 COPY . .
-RUN rm -rf node_modules && npm install
 EXPOSE 9003
-CMD ["node", "index.js"]
+CMD ["npm", "start"]
