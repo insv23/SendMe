@@ -22,7 +22,7 @@ const InputFileItem = ({ file, onRemove }) => {
           }}
         />
       </div>
-      <div className="flex items-center flex-auto overflow-hidden">
+      <div className="flex items-center flex-auto overflow-hidden max-w-[120px]">
         <span className="truncate">{file.name}</span>
       </div>
       <div className="flex-none">

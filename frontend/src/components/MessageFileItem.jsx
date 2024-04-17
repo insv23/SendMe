@@ -68,7 +68,7 @@ const MessageFileItem = ({ file }) => {
           }}
         />
       </div>
-      <div className="flex items-center flex-auto overflow-hidden">
+      <div className="flex items-center flex-auto overflow-hidden max-w-[120px]">
         <span className="truncate">{formatFileName(file.file_name)}</span>
       </div>
       <div
