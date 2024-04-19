@@ -1,12 +1,23 @@
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { Button } from "primereact/button";
 
 const InputToolbar = ({ onFilesSelected, onSend }) => {
   const fileInputRef = useRef();
+  const [isSending, setIsSending] = useState(false);
 
   const handleUploadClick = () => {
     fileInputRef.current.click();
   };
+
+  const handleSend = async () => {
+    setIsSending(true)
+    try {
+      await onSend();
+    } finally {
+      setIsSending(false)
+    }
+  } 
+
 
   return (
     <div className="flex justify-between gap-2 m-2 card">
@@ -28,7 +39,8 @@ const InputToolbar = ({ onFilesSelected, onSend }) => {
         label="Send"
         icon="pi pi-upload"
         iconPos="right"
-        onClick={onSend}
+        onClick={handleSend}
+        disabled={isSending}
       />
     </div>
   );
