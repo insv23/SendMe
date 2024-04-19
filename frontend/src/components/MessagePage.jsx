@@ -17,6 +17,28 @@ const MessagesPage = () => {
       );
       setMessages(sortedMessages);
     });
+
+    // 建立WebSocket连接
+    const ws = new WebSocket('ws://45.152.64.68:9003'); // 使用实际的WebSocket服务器地址
+
+    ws.onopen = () => {
+      console.log('WebSocket connected');
+    };
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === 'newMessage') {
+        // 当接收到新消息时，将其添加到消息列表的开头
+        setMessages((prevMessages) => [data.message, ...prevMessages]);
+      }
+    };
+
+    // 组件卸载时关闭WebSocket连接
+    return () => {
+      ws.close();
+    };
+
+
   }, []);
 
   const addMessage = (newMessage) => {
