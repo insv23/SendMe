@@ -6,7 +6,7 @@ const FileItem = React.memo(({ file, fileUrlBase = '' }) => {
   const isImage = (file.type && file.type.startsWith("image/")) || ( file.file_type && file.file_type.startsWith("image/"));
   // 构建图片URL
   const imageUrl = isImage ? (fileUrlBase ? fileUrlBase + file.file_name : URL.createObjectURL(file)) : "/file.png";
-  const fileName = file.file_name || file.name; // 兼容不同的文件名属性
+  const fileName = file.file_original_name || file.name; // 兼容不同的文件名属性
 
   return (
     <div className="flex gap-2 m-1 file-item">
