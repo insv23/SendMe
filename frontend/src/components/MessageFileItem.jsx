@@ -17,17 +17,26 @@ const MessageFileItem = ({ file }) => {
     try {
       const imageResponse = await fetch(`${baseUrl}/api/files/${file.file_name}`);
       const imageBlob = await imageResponse.blob();
-      if (window.ClipboardItem) {
-        const clipboardItem = new ClipboardItem({ [imageBlob.type]: imageBlob });
-       await navigator.clipboard.write([clipboardItem]);
-        toast.success("Image copied to clipboard");
-      } else {
-        console.error("ClipboardItem is not supported by this browser.");
-        toast.error("此浏览器不支持复制到剪贴板(可能需要 https)");
-      }
+      // 将图片转换为image/png格式
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const img = await createImageBitmap(imageBlob);
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+      canvas.toBlob(async (blob) => {
+        if (window.ClipboardItem) {
+          const clipboardItem = new ClipboardItem({"image/png": blob});
+          await navigator.clipboard.write([clipboardItem]);
+          toast.success("Image copied to clipboard");
+        } else {
+          console.error("ClipboardItem is not supported by this browser.");
+          toast.error("此浏览器不支持复制到剪贴板(可能需要 https)"); 
+        }
+      }, 'image/png');
     } catch (err) {
       console.error("复制失败: ", err);
-      toast.error("复制到剪贴板失败");
+      toast.error("Failed to copy image");
     }
   };
 
