@@ -12,4 +12,17 @@ async function createFile(messageId, file) {
   });
 }
 
-module.exports = { createFile };
+async function getOriginalFileNameByFileName(fileName) {
+  const sql = `SELECT file_original_name FROM File WHERE file_name = ?`;
+  return new Promise((resolve, reject) => {
+    db.get(sql, [fileName], (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row ? row.file_original_name : null);
+      }
+    });
+  });
+}
+
+module.exports = { createFile, getOriginalFileNameByFileName };
