@@ -1,6 +1,7 @@
 import React from 'react';
 
-const FileItem = ({ file, fileUrlBase = '' }) => {
+// React.memo是一个高阶组件，它仅对其组件的props变化时才会重新渲染。
+const FileItem = React.memo(({ file, fileUrlBase = '' }) => {
   // 检查文件是否为图片
   const isImage = (file.type && file.type.startsWith("image/")) || ( file.file_type && file.file_type.startsWith("image/"));
   // 构建图片URL
@@ -26,6 +27,6 @@ const FileItem = ({ file, fileUrlBase = '' }) => {
       </div>
     </div>
   );
-};
+});
 
 export default FileItem;
