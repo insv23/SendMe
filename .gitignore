@@ -27,3 +27,6 @@ dist-ssr
 
 /backend/database/dev_uploads/*
 *.sqlite
+
+frontend/.env.development
+frontend/.env.production
