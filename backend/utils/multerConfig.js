@@ -15,6 +15,15 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+  storage: storage,
+  fileFilter(req, file, callback) {
+    // 解决中文名乱码的问题
+    file.originalname = Buffer.from(file.originalname, "latin1").toString(
+      "utf8"
+    );
+    callback(null, true);
+  },
+});
 
 module.exports = upload;
