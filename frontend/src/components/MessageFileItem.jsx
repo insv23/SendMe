@@ -1,5 +1,6 @@
 import toast, { Toaster } from "react-hot-toast";
 import { Button } from "primereact/button";
+import FileItem from './FileItem'; 
 
 const MessageFileItem = ({ file }) => {
   const fileUrlBase = `${import.meta.env.VITE_API_BASE_URL}/api/files/`;
@@ -56,21 +57,7 @@ const MessageFileItem = ({ file }) => {
   return (
     <div className="flex gap-2 m-1 message-file-item">
       <Toaster position="top-center" reverseOrder={false} />
-      <div className="flex-none">
-        <img
-          src={isImage ? fileUrlBase + file.file_name : "/file.png"}
-          alt={file.file_name}
-          style={{
-            width: "50px", // 设置固定宽度
-            height: "50px", // 设置固定高度
-            objectFit: "cover", // 保持宽高比同时填充整个容器
-            objectPosition: "center", // 图片居中
-          }}
-        />
-      </div>
-      <div className="flex items-center flex-auto overflow-hidden max-w-[120px]">
-        <span className="truncate">{file.file_name}</span>
-      </div>
+      <FileItem file={file} fileUrlBase={fileUrlBase} />
       <div
         className="flex-none"
         style={{ display: isImage ? "block" : "none" }}
