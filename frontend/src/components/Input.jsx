@@ -5,7 +5,7 @@ import InputFileArea from "./InputFileArea";
 import InputToolbar from "./InputToolbar";
 import messageService from "../services/message";
 
-const Input = ({ onMessageSend }) => {
+const Input = () => {
   const [text, setText] = useState("");
   const [files, setFiles] = useState([]);
 
@@ -40,7 +40,7 @@ const Input = ({ onMessageSend }) => {
     });
     const newMessage = await messageService.create(formData);
     if (newMessage) {
-      onMessageSend(newMessage);
+      // onMessageSend(newMessage);
       setText("");
       setFiles([]);
     }

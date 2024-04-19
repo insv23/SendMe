@@ -41,15 +41,10 @@ const MessagesPage = () => {
 
   }, []);
 
-  const addMessage = (newMessage) => {
-    // 为了保持消息列表的顺序，新消息应该被添加到数组的开头
-    setMessages((prevMessages) => [newMessage, ...prevMessages]);
-  };
-
   return (
     <div className="flex flex-col max-w-sm sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl text-[#D9D9D9]">
       <TopBar />
-      <Input onMessageSend={addMessage} />
+      <Input />
       <MessageList messages={messages} />
     </div>
   );
