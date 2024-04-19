@@ -2,6 +2,7 @@ const router = require("express").Router();
 const upload = require("../utils/multerConfig");
 const messageService = require("../models/Message");
 const fileService = require("../models/File");
+const { broadcastMessage } = require("../utils/websocketService");
 
 router.get("/", async (req, res) => {
   try {
@@ -29,13 +30,16 @@ router.post("/", upload.array("files"), async (req, res) => {
   const files = req.files;
   try {
     const messageId = await messageService.createMessage(text);
-    if (files) {
+    if (files && files.length > 0) {
       files.forEach(async (file) => {
         await fileService.createFile(messageId, file);
       });
     }
 
     const message = await messageService.getMessage(messageId);
+    // 广播完整的消息对象
+    broadcastMessage({ type: "newMessage", message: message });
+
     res.status(200).json({ data: message });
   } catch (error) {
     console.error(error.message);
