@@ -20,6 +20,7 @@ CREATE TABLE File (
     file_type TEXT NOT NULL,
     file_size INTEGER NOT NULL,
     file_name TEXT NOT NULL,
+    file_original_name TEXT NOT NULL,
     FOREIGN KEY(message_id) REFERENCES Message(id)
 );
 
@@ -34,7 +35,7 @@ INSERT INTO Message (id, creation_time, expiration_time, text) VALUES
 (3, '2024-04-12T16:30:00.000Z', '2034-04-15T17:30:00.000Z', 'Hello, this is another text message'); 
 
 -- 向 File 表插入示例数据
-INSERT INTO File (id, message_id, file_type, file_size, file_name) VALUES
-(1, 1, 'image/jpg', 400, 'demo-image-1.jpg'),
-(2, 2, 'image/jpg', 1000, 'demo-Saul.jpg'),
-(3, 2, 'image/png', 270, 'demo-White.png');
+INSERT INTO File (id, message_id, file_type, file_size, file_name, file_original_name) VALUES
+(1, 1, 'image/jpg', 400, 'demo-image-1.jpg', 'demo.jpg'),
+(2, 2, 'image/jpg', 1000, 'demo-Saul.jpg', 'Saul Goodman.jpg'),
+(3, 2, 'image/png', 270, 'demo-White.png', '海森堡.png');

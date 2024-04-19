@@ -28,7 +28,8 @@ async function getMessages() {
     f.id as file_id,
     f.file_type,
     f.file_size,
-    f.file_name
+    f.file_name,
+    f.file_original_name
   FROM
     Message m
     LEFT JOIN File f ON m.id = f.message_id
@@ -66,6 +67,7 @@ async function getMessages() {
             file_type: row.file_type,
             file_size: row.file_size,
             file_name: row.file_name,
+            file_original_name: row.file_original_name,
           });
         }
 
@@ -86,7 +88,8 @@ async function getMessage(messageId) {
       f.id as file_id,
       f.file_type,
       f.file_size,
-      f.file_name
+      f.file_name,
+      f.file_original_name
     FROM
       Message m
       LEFT JOIN File f ON m.id = f.message_id
@@ -120,6 +123,7 @@ async function getMessage(messageId) {
               file_type: row.file_type,
               file_size: row.file_size,
               file_name: row.file_name,
+              file_original_name: row.file_original_name,
             });
           }
 
