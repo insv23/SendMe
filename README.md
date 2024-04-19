@@ -61,7 +61,14 @@ npm run dev
 ```
 后端默认运行端口是 9003
 
-6. 启动前端服务器
+6. 配置前端所使用的后端服务器地址与端口(开发环境)
+
+创建 `frontend/.env.development` 文件(可复制 `frontend/.env.development.example`)
+- 如果只是在本地开发，无需修改
+- 如果在云服务上开发，需要将 `localhost` 改为 `服务器 IP`。这样前端页面才能正常与后端通信
+
+
+7. 启动前端服务器
 ```shell
 cd ../frontend
 npm run dev
@@ -69,7 +76,19 @@ npm run dev
 前端默认运行端口是 5173
 
 ### Docker 部署
-构建并启动容器
+1. 配置前端所使用的后端服务器地址与端口(生产环境)
+
+- 使用域名
+  - 将特定子域名(例如 `s.YOUR_DOMAIN`) 解析到服务器 IP
+  - 创建 `frontend/.env.production` 文件(可复制 `frontend/.env.production.example`)
+  - 将其中的 `YOUR_DOMAIN` 改为你的实际域名
+- 不使用域名
+  - 创建 `frontend/.env.production` 文件(可复制 `frontend/.env.development.example`)
+  
+    (⚠️复制的是 `development` 示例文件)
+  - 将其中的 `localhost` 改为服务器 IP
+
+2. 构建并启动容器
 ```shell
 docker-compose up --build
 ```
