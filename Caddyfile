@@ -1,7 +1,7 @@
-sendme.YOUR_DOMAIN {
+s.ljsa.top {
 	reverse_proxy sendme-frontend:80
-}
 
-sendme.YOUR_DOMAIN/api/* {
-	reverse_proxy sendme-backend:9003
+	handle /api/* {
+		reverse_proxy sendme-backend:9003
+	}
 }
