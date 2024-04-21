@@ -92,6 +92,10 @@ npm run dev
 ```shell
 docker-compose up --build
 ```
+或
+```shell
+docker compose up -d --build
+```
 
 ## 声明
 包含大量 AI 辅助创作内容，包括但不限于代码、注释以及文档
