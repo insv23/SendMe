@@ -1,8 +1,14 @@
-FROM node:14
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install
-RUN apt-get update && apt-get install -y sqlite3
-COPY . .
+FROM node:20.5.1-bookworm-slim
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends dumb-init && \
+    apt-get install -y sqlite3 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+ENV NODE_ENV production
+WORKDIR /usr/src/app
+COPY --chown=node:node package*.json ./
+RUN npm ci
+COPY --chown=node:node . .
+USER node
 EXPOSE 9003
-CMD ["npm", "start"]
+CMD ["dumb-init", "npm", "start"]

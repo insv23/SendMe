@@ -1,4 +1,3 @@
-version: "3"
 services:
   frontend:
     build: ./frontend # 前端项目的路径
