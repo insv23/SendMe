@@ -34,45 +34,45 @@ SendMe 是一个基于 React、Node.js 和 SQLite 的简易网络剪贴板/中�
 
 ### 运行项目
 1. 克隆项目
-```shell
-git clone https://github.com/insv23/SendMe.git
-```
+    ```shell
+    git clone https://github.com/insv23/SendMe.git
+    ```
 
 2. 安装前端依赖
-```shell
-cd frontend
-npm install
-```
+    ```shell
+    cd frontend
+    npm install
+    ```
 
 3. 安装后端依赖
-```shell
-cd ../backend
-npm install
-```
+    ```shell
+    cd ../backend
+    npm install
+    ```
 
 4. 后端初始化开发数据库
-```shell
-npm run db:dev
-```
+    ```shell
+    npm run db:dev
+    ```
 
 5. 启动后端服务器
-```shell
-npm run dev
-```
-后端默认运行端口是 9003
+    ```shell
+    npm run dev
+    ```
+    后端默认运行端口是 9003
 
 6. 配置前端所使用的后端服务器地址与端口(开发环境)
 
-创建 `frontend/.env.development` 文件(可复制 `frontend/.env.development.example`)
-- 如果只是在本地开发，无需修改
-- 如果在云服务上开发，需要将 `localhost` 改为 `服务器 IP`。这样前端页面才能正常与后端通信
+    创建 `frontend/.env.development` 文件(可复制 `frontend/.env.development.example`)
+    - 如果只是在本地开发，无需修改
+    - 如果在云服务上开发，需要将 `localhost` 改为 `服务器 IP`。这样前端页面才能正常与后端通信
 
 
 7. 启动前端服务器
-```shell
-cd ../frontend
-npm run dev
-```
+    ```shell
+    cd ../frontend
+    npm run dev
+    ```
 前端默认运行端口是 5173
 
 ### Docker 部署
@@ -89,13 +89,13 @@ npm run dev
   - 将其中的 `localhost` 改为服务器 IP
 
 2. 构建并启动容器
-```shell
-docker-compose up --build
-```
-或
-```shell
-docker compose up -d --build
-```
+    ```shell
+    docker-compose up --build
+    ```
+    或
+    ```shell
+    docker compose up -d --build
+    ```
 
 ## 声明
 包含大量 AI 辅助创作内容，包括但不限于代码、注释以及文档
