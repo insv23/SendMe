@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon index.js",
-    "db:dev": "cross-env sqlite3 ./database/dev_sendme.sqlite < ./database/dev_init.sql",
+    "db:dev": "cross-env sqlite3 ./database/dev_data/dev_sendme.sqlite < ./database/dev_init.sql",
     "start": "npm run db:prod && cross-env NODE_ENV=production node index.js",
-    "db:prod": "cross-env mkdir -p ./database/uploads && sqlite3 ./database/sendme.sqlite < ./database/init.sql",
+    "db:prod": "cross-env mkdir -p ./database/prod_data/uploads && sqlite3 ./database/prod_data/sendme.sqlite < ./database/prod_init.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
