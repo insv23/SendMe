@@ -1,5 +1,6 @@
 const db = require("../utils/db");
 const config = require("../utils/config");
+const { deleteFileByMessageId } = require("../models/File");
 
 async function createMessage(text) {
   const sql = `INSERT INTO Message (creation_time, expiration_time, text) VALUES (?, ?, ?)`;
@@ -142,4 +143,20 @@ async function getMessage(messageId) {
   });
 }
 
-module.exports = { createMessage, getMessages, getMessage };
+async function deleteMessage(messageId) {
+  // 删除文件系统中的文件 and 数据库中的文件记录
+  await deleteFileByMessageId(messageId);
+
+  // 删除数据库中的message记录
+  const sql = `DELETE FROM Message WHERE id = ?`;
+  return new Promise((resolve, reject) => {
+    db.run(sql, [messageId], (err) => {
+      if (err) {
+        reject(err);
+      }
+      resolve();
+    });
+  });
+}
+
+module.exports = { createMessage, getMessages, getMessage, deleteMessage };
