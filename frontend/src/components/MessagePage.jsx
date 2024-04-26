@@ -33,11 +33,16 @@ const MessagesPage = () => {
   // 并将接收到的消息作为参数传递给这个函数。
   useWebSocket(handleNewMessage);
 
+  // 处理删除消息
+  const handleDeleteMessage = (messageId) => {
+    setMessages(messages.filter(message => message.message_id !== messageId));
+  };
+  
   return (
     <div className="flex flex-col max-w-sm sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl text-[#D9D9D9]">
       <TopBar />
       <Input />
-      <MessageList messages={messages} />
+      <MessageList messages={messages} onDeleteMessage={handleDeleteMessage} />
     </div>
   );
 };
