@@ -47,4 +47,15 @@ router.post("/", upload.array("files"), async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  const messageId = req.params.id;
+  try {
+    await messageService.deleteMessage(messageId);
+    res.status(200).json({ message: "Message deleted successfully" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 module.exports = router;
