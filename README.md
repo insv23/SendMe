@@ -88,7 +88,20 @@ SendMe 是一个基于 React、Node.js 和 SQLite 的简易网络剪贴板/中�
     (⚠️复制的是 `development` 示例文件)
   - 将其中的 `localhost` 改为服务器 IP
 
-2. 构建并启动容器
+2. 数据持久化
+
+    生产环境数据放在当前目录下的 `data_bak` 目录中
+
+    创建 `data_bak` 目录并为 others 用户添加`写`权限(backend 容器使用 `node` 用户对宿主机文件不一定有写入权限)
+    ```shell
+    mkdir ./data_bak
+    chmod o+w ./data_bak
+    ```
+    - 如果 data_bak 目录为空，后端容器启动时会执行初始化数据脚本，创建对应数据库和目录
+    - 如果 data_bak 目录中有内容，则后端容器会使用其中的内容作为数据来源
+
+
+3. 构建并启动容器
     ```shell
     docker-compose up --build
     ```
