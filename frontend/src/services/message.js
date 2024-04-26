@@ -25,4 +25,16 @@ const create = async (formData) => {
   }
 };
 
-export default { getAll, create };
+const deleteMessage = async (messageId) => {
+  try {
+    const response = await ofetch(`${baseUrl}/api/messages/${messageId}`, {
+      method: "DELETE",
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting message:", error);
+    throw new Error("Failed to delete message");
+  }
+};
+
+export default { getAll, create, deleteMessage };
