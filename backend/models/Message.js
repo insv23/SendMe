@@ -159,4 +159,18 @@ async function deleteMessage(messageId) {
   });
 }
 
-module.exports = { createMessage, getMessages, getMessage, deleteMessage };
+async function getExpiredMessages() {
+  const sql = `SELECT id FROM Message WHERE expiration_time < ?`;
+  const currentTime = new Date().toISOString();
+  return new Promise((resolve, reject) => {
+    db.all(sql, [currentTime], (err, rows) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(rows);
+    });
+  });
+}
+
+
+module.exports = { createMessage, getMessages, getMessage, deleteMessage, getExpiredMessages };
