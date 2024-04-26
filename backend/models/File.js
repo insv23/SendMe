@@ -57,8 +57,21 @@ async function deleteFileByMessageId(messageId) {
   });
 }
 
+async function getAllFileNames() {
+  const sql = `SELECT file_name FROM File`;
+  return new Promise((resolve, reject) => {
+    db.all(sql, (err, rows) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(rows.map((row) => row.file_name));
+    });
+  });
+}
+
 module.exports = {
   createFile,
   getOriginalFileNameByFileName,
   deleteFileByMessageId,
+  getAllFileNames,
 };
